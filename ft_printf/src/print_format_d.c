@@ -21,7 +21,7 @@ static int	print_n_10_fd(int n)
 	if (n == -2147483648)
 	{
 		ft_putstr_fd(INT_MIN_S, FD);
-		return (12);
+		return (11);
 	}
 	if (n < 0)
 	{

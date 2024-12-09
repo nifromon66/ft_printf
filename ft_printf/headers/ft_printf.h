@@ -33,7 +33,7 @@ typedef enum e_type
 }	t_type;
 
 # define NULL_S			"(null)"
-# define OX				"0X"
+# define OX				"0x"
 # define LEN_OX 		2
 # define NULL_P			"(nil)"
 # define BASE_10		"012345678910"
