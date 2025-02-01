@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 //START
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 
-# include "libft/headers/libft.h"
 # include <stdarg.h>
+# include "libft/headers/libft.h"
 
 # define FD				1
 
@@ -43,7 +43,7 @@ typedef enum e_type
 # define NULL_HEX   	"(nil)"
 # define LEN_BASE_16	16
 
-# define INT_MIN_S	"-2147483648"
+# define INT_MIN_S		"-2147483648"
 
 typedef struct s_format
 {
