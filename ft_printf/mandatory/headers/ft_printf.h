@@ -15,23 +15,10 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "libft/headers/libft.h"
+# include "../../libft/headers/libft.h"
 
+// Macros
 # define FD				1
-
-typedef enum e_type
-{
-	C,
-	S,
-	P,
-	D,
-	I,
-	U,
-	X_LOW,
-	X_UPP,
-	PC
-}	t_type;
-
 # define NULL_S			"(null)"
 # define OX				"0x"
 # define LEN_OX 		2
@@ -40,12 +27,26 @@ typedef enum e_type
 # define LEN_BASE_10	10
 # define BASE_16_LOW	"0123456789abcdef"
 # define BASE_16_UPP	"0123456789ABCDEF"
-# define NULL_HEX   	"(nil)"
+# define NULL_HEX		"(nil)"
 # define LEN_BASE_16	16
-
 # define INT_MIN_S		"-2147483648"
 
-typedef struct s_format
+// Enumerations
+typedef enum e_ft_printf
+{
+	FT_PRINTF_C,
+	FT_PRINTF_S,
+	FT_PRINTF_P,
+	FT_PRINTF_D,
+	FT_PRINTF_I,
+	FT_PRINTF_U,
+	FT_PRINTF_X_LOW,
+	FT_PRINTF_X_UPP,
+	FT_PRINTF_PC
+}	t_enum_ft_printf;
+
+// Structures
+typedef struct s_ft_printf
 {
 	int	hashtag;
 	int	zero;
@@ -56,28 +57,33 @@ typedef struct s_format
 	int	precision;
 	int	specifier;
 	int	printed;
-}	t_format;
+}	t_ft_printf;
 
-typedef void	(*t_dispatch)(t_format *format, va_list arg);
+// Fonction alias
+typedef void	(*t_dispatch)(t_ft_printf *format, va_list arg);
 
-void		print_format_c(t_format *format, va_list arg);
-void		print_format_s(t_format *format, va_list arg);
-void		print_format_p(t_format *format, va_list arg);
-void		print_format_d(t_format *format, va_list arg);
-void		print_format_i(t_format *format, va_list arg);
-void		print_format_u(t_format *format, va_list arg);
-void		print_format_x_low(t_format *format, va_list arg);
-void		print_format_x_upp(t_format *format, va_list arg);
-void		print_format_pc(t_format *percent, va_list arg);
-
+// Fonctions
+// Manager fonction
+	// ft_printf.c
+int			ft_printf(const char *format, ...);
+// Employee Functions
+	// init.c
+int			ftpf_fetch_type(const char *format);
+t_ft_printf	*ftpf_init_struct(void);
+int			ftpf_fill_type(const char *s, t_ft_printf *format);
+	// check.c
 int			check_type(char c);
 int			check_spec(const char *s);
-
-int			fetch_type(const char *format);
-t_format	*init_struct(void);
-int			fill_type(const char *s, t_format *format);
-
-int			ft_printf(const char *format, ...);
+	// ftpf_format_*.c
+void		ftpf_format_c(t_ft_printf *format, va_list arg);
+void		ftpf_format_s(t_ft_printf *format, va_list arg);
+void		ftpf_format_p(t_ft_printf *format, va_list arg);
+void		ftpf_format_d(t_ft_printf *format, va_list arg);
+void		ftpf_format_i(t_ft_printf *format, va_list arg);
+void		ftpf_format_u(t_ft_printf *format, va_list arg);
+void		ftpf_format_x_low(t_ft_printf *format, va_list arg);
+void		ftpf_format_x_upp(t_ft_printf *format, va_list arg);
+void		ftpf_format_pc(t_ft_printf *percent, va_list arg);
 
 #endif
 

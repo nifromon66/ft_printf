@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /**/
 /*:::  ::::::::   */
-/*   print_format_d.c  :+:  :+::+:   */
+/*   print_format_i.c  :+:  :+::+:   */
 /*+:+ +:+ +:+ */
 /*   By: nifromon <nifromon@student.42perpignan.+#+  +:+   +#+*/
 /*+#+#+#+#+#+   +#+   */
-/*   Created: 2024/11/15 18:40:38 by nifromon  #+##+# */
-/*   Updated: 2024/11/15 22:19:08 by nifromon ###   ########.fr   */
+/*   Created: 2024/11/15 19:41:06 by nifromon  #+##+# */
+/*   Updated: 2024/11/15 22:19:29 by nifromon ###   ########.fr   */
 /**/
 /* ************************************************************************** */
 
 //START
-#include "../headers/ft_printf.h"
+#include "../headers_bonus/ft_printf_bonus.h"
 
 static int	print_n_10_fd(int n)
 {
@@ -36,7 +36,7 @@ static int	print_n_10_fd(int n)
 	return (i);
 }
 
-void	print_format_d(t_format *format, va_list arg)
+void	ftpf_format_i(t_ft_printf *format, va_list arg)
 {
 	int	i;
 

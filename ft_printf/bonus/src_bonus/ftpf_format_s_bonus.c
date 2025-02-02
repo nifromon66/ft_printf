@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 //START
-#include "../headers/ft_printf.h"
+#include "../headers_bonus/ft_printf_bonus.h"
 
 static int	print_s_fd(char *s)
 {
@@ -26,7 +26,7 @@ static int	print_s_fd(char *s)
 	return (i);
 }
 
-void	print_format_s(t_format *format, va_list arg)
+void	ftpf_format_s(t_ft_printf *format, va_list arg)
 {
 	char	*s;
 

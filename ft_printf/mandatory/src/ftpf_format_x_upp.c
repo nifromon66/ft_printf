@@ -27,7 +27,7 @@ static int	print_n_16_fd_upp(unsigned int n)
 	return (i);
 }
 
-void	print_format_x_upp(t_format *format, va_list arg)
+void	ftpf_format_x_upp(t_ft_printf *format, va_list arg)
 {
 	int	x_upp;
 

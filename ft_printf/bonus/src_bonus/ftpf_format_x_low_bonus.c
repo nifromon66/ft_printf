@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 //START
-#include "../headers/ft_printf.h"
+#include "../headers_bonus/ft_printf_bonus.h"
 
 static int	print_n_16_fd_low(unsigned int n)
 {
@@ -27,7 +27,7 @@ static int	print_n_16_fd_low(unsigned int n)
 	return (i);
 }
 
-void	print_format_x_low(t_format *format, va_list arg)
+void	ftpf_format_x_low(t_ft_printf *format, va_list arg)
 {
 	int	x_low;
 

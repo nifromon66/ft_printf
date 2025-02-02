@@ -36,7 +36,7 @@ static int	print_n_10_fd(int n)
 	return (i);
 }
 
-void	print_format_i(t_format *format, va_list arg)
+void	ftpf_format_i(t_ft_printf *format, va_list arg)
 {
 	int	i;
 
