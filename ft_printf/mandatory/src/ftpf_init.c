@@ -20,7 +20,7 @@ int	ftpf_fetch_type(const char *format)
 	i = 0;
 	if (format[i] == '%')
 		i++;
-	while (!(check_type(format[i])) && format[i])
+	while (!(ftpf_check_type(format[i])) && format[i])
 		i++;
 	if (format[i] == 'c')
 		return (FT_PRINTF_C);
@@ -48,24 +48,9 @@ t_ft_printf	*ftpf_init_struct(void)
 	format = (t_ft_printf *)malloc(sizeof(t_ft_printf));
 	if (!format)
 		return (NULL);
-	format->hashtag = 0;
-	format->zero = 0;
-	format->hyphen = 0;
-	format->blank = 0;
-	format->plus = 0;
-	format->width = 0;
-	format->precision = 0;
 	format->specifier = 0;
 	format->printed = 0;
 	return (format);
-}
-
-int	ftpf_fill_type(const char *s, t_ft_printf *format)
-{
-	if (!format)
-		return (-1);
-	format->specifier = ftpf_fetch_type(s);
-	return (format->specifier);
 }
 
 //END

@@ -48,19 +48,12 @@ typedef enum e_ft_printf
 // Structures
 typedef struct s_ft_printf
 {
-	int	hashtag;
-	int	zero;
-	int	hyphen;
-	int	blank;
-	int	plus;
-	int	width;
-	int	precision;
 	int	specifier;
 	int	printed;
 }	t_ft_printf;
 
 // Fonction alias
-typedef void	(*t_dispatch)(t_ft_printf *format, va_list arg);
+typedef void	(*t_ftpf_dispatch)(t_ft_printf *format, va_list arg);
 
 // Fonctions
 // Manager fonction
@@ -70,10 +63,9 @@ int			ft_printf(const char *format, ...);
 	// init.c
 int			ftpf_fetch_type(const char *format);
 t_ft_printf	*ftpf_init_struct(void);
-int			ftpf_fill_type(const char *s, t_ft_printf *format);
 	// check.c
-int			check_type(char c);
-int			check_spec(const char *s);
+int			ftpf_check_type(char c);
+int			ftpf_check_spec(const char *s);
 	// ftpf_format_*.c
 void		ftpf_format_c(t_ft_printf *format, va_list arg);
 void		ftpf_format_s(t_ft_printf *format, va_list arg);

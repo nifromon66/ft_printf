@@ -49,16 +49,21 @@ OBJS =				$(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 SRCS_BONUS =		\
 					$(SRCS_BONUS_DIR)/ft_printf_bonus.c \
+					$(SRCS_BONUS_DIR)/ftpf_dispatch_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_check_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_init_bonus.c \
+					$(SRCS_BONUS_DIR)/ftpf_fetch_manager_bonus.c \
+					$(SRCS_BONUS_DIR)/ftpf_sort_flags_manager_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_c_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_s_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_p_bonus.c \
+					$(SRCS_BONUS_DIR)/ftpf_format_pc_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_d_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_i_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_u_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_x_low_bonus.c \
-					$(SRCS_BONUS_DIR)/ftpf_format_x_upp_bonus.c
+					$(SRCS_BONUS_DIR)/ftpf_format_x_upp_bonus.c \
+					$(SRCS_BONUS_DIR)/ftpf_utils_bonus.c
 
 OBJS_BONUS_DIR =	obj_bonus
 
@@ -89,11 +94,11 @@ $(OBJS_BONUS_DIR)/%.o: $(SRCS_BONUS_DIR)/%.c
 					@mkdir -p $(OBJS_BONUS_DIR)/src_bonus
 					$(CC) -c $(CFLAGS) $(INCLUDES_BONUS) $< -o $@
 
-tester_bonus:		bonus
-					make -C $(TESTER_BONUS_PATH) all
-
 tester: 			all
 					make -C $(TESTER_PATH) all
+
+tester_bonus:		bonus
+					make -C $(TESTER_BONUS_PATH) all
 
 clean:
 					make -C $(LIBFT_PATH) clean
@@ -113,7 +118,12 @@ re: 				fclean all
 
 re_bonus:			fclean bonus
 
+re_tester:			fclean tester
+
+re_tester_bonus:	fclean tester_bonus
+
 .PHONY: 			all tester clean fclean re \
-					bonus tester_bonus re_bonus
+					bonus tester_bonus re_bonus \
+					re_tester re_tester_bonus
 
 #END

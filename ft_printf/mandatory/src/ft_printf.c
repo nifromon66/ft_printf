@@ -20,7 +20,7 @@ void	ftpf_format_pc(t_ft_printf *percent, va_list arg)
 	percent->printed += 1;
 }
 
-static int	ft_percent_len(const char *s)
+static int	ftpf_percent_len(const char *s)
 {
 	int	i;
 
@@ -29,16 +29,16 @@ static int	ft_percent_len(const char *s)
 		return (0);
 	while (s[i])
 	{
-		if (check_type(s[i]))
+		if (ftpf_check_type(s[i]))
 			return (i);
 		i++;
 	}
 	return (0);
 }
 
-static void	dispatching(int type, t_ft_printf *format, va_list arg)
+static void	ftpf_dispatching(int type, t_ft_printf *format, va_list arg)
 {
-	t_dispatch	arr[9];
+	t_ftpf_dispatch	arr[9];
 
 	arr[FT_PRINTF_C] = &ftpf_format_c;
 	arr[FT_PRINTF_S] = &ftpf_format_s;
@@ -52,7 +52,7 @@ static void	dispatching(int type, t_ft_printf *format, va_list arg)
 	arr[type](format, arg);
 }
 
-static int	parsing(const char *format, va_list arg)
+static int	ftpf_parsing(const char *format, va_list arg)
 {
 	t_ft_printf	*type;
 	int			printed;
@@ -64,7 +64,7 @@ static int	parsing(const char *format, va_list arg)
 		specifier = ftpf_fetch_type(format);
 		type->specifier = specifier;
 	}
-	dispatching(type->specifier, type, arg);
+	ftpf_dispatching(type->specifier, type, arg);
 	printed = type->printed;
 	free(type);
 	return (printed);
@@ -77,23 +77,22 @@ int	ft_printf(const char *format, ...)
 	int		i;
 
 	printed = 0;
-	i = 0;
+	i = -1;
 	va_start(arg, format);
-	while (format[i])
+	while (format[++i])
 	{
 		if (format[i] == '%')
 		{
-			if (!(check_spec(&format[i])))
-				return (0);
-			printed += parsing(&format[i], arg);
-			i += ft_percent_len(&format[i]);
+			if (ftpf_check_spec(&format[i]) == 0)
+			{
+				printed += write(FD, &format[i], 1);
+				continue ;
+			}
+			printed += ftpf_parsing(&format[i], arg);
+			i += ftpf_percent_len(&format[i]);
 		}
 		else
-		{
-			ft_putchar_fd(format[i], FD);
-			printed++;
-		}
-		i++;
+			printed += write(FD, &format[i], 1);
 	}
 	va_end(arg);
 	return (printed);

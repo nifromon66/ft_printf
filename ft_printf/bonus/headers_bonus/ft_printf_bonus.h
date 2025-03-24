@@ -15,6 +15,7 @@
 # define FT_PRINTF_BONUS_H
 
 # include <stdarg.h>
+# include <stdio.h>
 # include "../../libft/headers/libft.h"
 
 // Macros
@@ -55,25 +56,35 @@ typedef struct s_ft_printf
 	int	plus;
 	int	width;
 	int	precision;
+	int	star;
 	int	specifier;
 	int	printed;
 }	t_ft_printf;
 
 // Fonction alias
-typedef void	(*t_dispatch)(t_ft_printf *format, va_list arg);
+typedef void	(*t_ftpf_dispatch)(t_ft_printf *format, va_list arg);
 
 // Fonctions
-// Manager fonction
 	// ft_printf.c
 int			ft_printf(const char *format, ...);
-// Employee Functions
-	// init.c
-int			ftpf_fetch_type(const char *format);
+	// ftpf_dispatch_bonus.c
+int			ftpf_parsing(const char *format, va_list arg);
+void		ftpf_dispatching(int type, t_ft_printf *format, va_list arg);
+void		ftpf_format_star(const char *format, t_ft_printf **flags,
+				va_list arg);
+	// ftpf_init_bonus.c
 t_ft_printf	*ftpf_init_struct(void);
-int			ftpf_fill_type(const char *s, t_ft_printf *format);
-	// check.c
-int			check_type(char c);
-int			check_spec(const char *s);
+	// ftpf_fetch_manager_bonus.c
+int			ftpf_fetch_type(const char *format);
+void		ftpf_fetch_flags(const char *format, t_ft_printf **flags);
+int			ftpf_fetch_precision(const char *format, int index);
+int			ftpf_fetch_width(const char *format, int index);
+	// ftpf_sort_flags_manager_bonus.c
+void		ftpf_sort_flags_manager(t_ft_printf **flags);
+void		ftpf_sort_flags_spec(t_ft_printf **flags, int spec);
+	// ftpf_check_bonus.c
+int			ftpf_check_type(char c);
+int			ftpf_check_spec(const char *s);
 	// ftpf_format_*.c
 void		ftpf_format_c(t_ft_printf *format, va_list arg);
 void		ftpf_format_s(t_ft_printf *format, va_list arg);
@@ -84,6 +95,9 @@ void		ftpf_format_u(t_ft_printf *format, va_list arg);
 void		ftpf_format_x_low(t_ft_printf *format, va_list arg);
 void		ftpf_format_x_upp(t_ft_printf *format, va_list arg);
 void		ftpf_format_pc(t_ft_printf *percent, va_list arg);
+int			ftpf_percent_len(const char *s);
+// ftpf_utils_bonus.c
+int			ull_len(unsigned long long nbr);
 
 #endif
 

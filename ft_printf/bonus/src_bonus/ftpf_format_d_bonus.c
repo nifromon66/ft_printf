@@ -13,7 +13,7 @@
 //START
 #include "../headers_bonus/ft_printf_bonus.h"
 
-static int	print_n_10_fd(int n)
+static int	print_n_10_fd(long n)
 {
 	int	i;
 
@@ -36,15 +36,107 @@ static int	print_n_10_fd(int n)
 	return (i);
 }
 
+static int	print_before_d(t_ft_printf *format, int number_len)
+{
+	int	printed;
+
+	printed = format->blank;
+	printed += format->plus;
+	if (format->width != 0 && format->precision == -1)
+		format->width -= number_len;
+	if ((format->blank || format->plus) && format->width != 0)
+		format->width--;
+	if (format->plus && format->zero)
+		ft_putchar_fd('+', FD);
+	else if (format->blank && format->zero)
+		ft_putchar_fd(' ', FD);
+	while (format->width-- > 0)
+	{
+		if (format->zero)
+			ft_putchar_fd('0', FD);
+		else
+			ft_putchar_fd(' ', FD);
+		printed++;
+	}
+	if (format->plus && !format->zero)
+		ft_putchar_fd('+', FD);
+	else if (format->blank && !format->zero)
+		ft_putchar_fd(' ', FD);
+	return (printed);
+}
+
+static int	print_middle_d(t_ft_printf *format, int number_len)
+{
+	int	printed;
+
+	printed = 0;
+	if (format->hyphen && (format->blank || format->plus))
+	{
+		if (format->blank)
+			ft_putchar_fd(' ', FD);
+		else if (format->plus)
+			ft_putchar_fd('+', FD);
+		printed++;
+	}
+	if (format->precision != -1)
+	{
+		format->precision -= number_len;
+		while (format->precision-- > 0)
+		{
+			ft_putchar_fd('0', FD);
+			printed++;
+		}
+	}
+	return (printed);
+}
+
+static int	print_after_d(t_ft_printf *format, int number_len)
+{
+	int	printed;
+
+	printed = 0;
+	if (format->width != 0 && format->precision == -1)
+		format->width -= number_len;
+	if ((format->blank || format->plus) && format->width != 0)
+		format->width--;
+	while (format->width-- > 0)
+	{
+		if (format->zero)
+			ft_putchar_fd('0', FD);
+		else
+			ft_putchar_fd(' ', FD);
+		printed++;
+	}
+	return (printed);
+}
+
 void	ftpf_format_d(t_ft_printf *format, va_list arg)
 {
-	int	i;
+	long	i;
+	char	*number;
 
-	i = va_arg(arg, int);
-	if (i > 0)
-		format->printed += print_n_10_fd((unsigned int) i);
-	else
-		format->printed += print_n_10_fd(i);
+	i = (long)va_arg(arg, int);
+	if ((i < 0))
+	{
+		format->blank = 0;
+		format->plus = 0;
+		if (!format->hyphen && format->zero)
+		{
+			ft_putchar_fd('-', FD);
+			format->printed++;
+			i *= -1;
+			if (format->width != 0)
+				format->width--;
+		}
+	}
+	number = ft_itoa((int)i);
+	if (!format->hyphen)
+		format->printed += print_before_d(format, ((int)(ft_strlen(number))));
+	format->printed += print_middle_d(format, ((int)(ft_strlen(number))));
+	format->printed += print_n_10_fd(i);
+	if (format->hyphen)
+		format->printed += print_after_d(format, ((int)(ft_strlen(number))));
+	free(number);
 }
 
 //END

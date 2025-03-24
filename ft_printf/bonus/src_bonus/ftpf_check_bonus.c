@@ -13,17 +13,20 @@
 //START
 #include "../headers_bonus/ft_printf_bonus.h"
 
-int	check_type(char c)
+int	ftpf_check_type(char c)
 {
 	if (!c)
 		return (0);
 	if (c == 'i' || c == 'd' || c == 'u' || c == 's' || c == 'c'
 		|| c == 'x' || c == 'X' || c == 'p' || c == '%')
 		return (1);
+	else if (c == '#' || c == ' ' || c == '-' || c == '+' || c == '.'
+		|| ft_isdigit(c) == 1)
+		return (2);
 	return (0);
 }
 
-int	check_spec(const char *s)
+int	ftpf_check_spec(const char *s)
 {
 	int	i;
 
@@ -34,7 +37,7 @@ int	check_spec(const char *s)
 		i++;
 	while (s[i])
 	{
-		if (check_type(s[i]))
+		if (ftpf_check_type(s[i]) == 1)
 			return (1);
 		i++;
 	}

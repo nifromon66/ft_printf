@@ -13,7 +13,7 @@
 //START
 #include "../headers/ft_printf.h"
 
-int	check_type(char c)
+int	ftpf_check_type(char c)
 {
 	if (!c)
 		return (0);
@@ -23,7 +23,7 @@ int	check_type(char c)
 	return (0);
 }
 
-int	check_spec(const char *s)
+int	ftpf_check_spec(const char *s)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ int	check_spec(const char *s)
 		i++;
 	while (s[i])
 	{
-		if (check_type(s[i]))
+		if (ftpf_check_type(s[i]))
 			return (1);
 		i++;
 	}

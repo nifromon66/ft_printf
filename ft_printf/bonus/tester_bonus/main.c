@@ -6,7 +6,7 @@
 /*   By: nifromon <nifromon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 22:17:18 by nifromon          #+#    #+#             */
-/*   Updated: 2025/02/02 11:50:44 by nifromon         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:57:14 by nifromon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,7 +328,7 @@ void	test_all(void)
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 
-/*void	test_bonus_char(void)
+void	test_bonus_char(void)
 {
 	int	x, y;
 	x = 0;
@@ -345,10 +345,11 @@ void	test_all(void)
 	x = printf("  Or:\tChar [%*c]\n", 8, 'x');
 	y = ft_printf("  Ft:\tChar [%*c]\n", 8, 'x');
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-
-	y = ft_printf("  Ft:\tChar [%0*c]\n", 8, 'x');
+	
+	x = printf("  Ft:\tChar [%-0*c]\n", 8, 'x');
 	y = ft_printf("  Ft:\tChar [%-0*c]\n", 8, 'x');
-
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	
 	printf("\n----------- TEST: WIDTH %% -----------\n\n");
 	x = printf("  Or:\tChar [%20%]\n");
 	y = ft_printf("  Ft:\tChar [%20%]\n");
@@ -385,7 +386,7 @@ void	test_bonus_hex(void)
 	x = printf("  Or:\tNumber [%#x]\n", 0);
 	y = ft_printf("  Ft:\tNumber [%#x]\n", 0);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-	//x = printf("  Or:\tNumber [%#x]\n", LONG_MIN);
+	x = printf("  Or:\tNumber [%#x]\n", LONG_MIN);
 	y = ft_printf("  Ft:\tNumber [%#x]\n", LONG_MIN);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 	x = printf("  Or:\tNumber [%#x]\n", 42);
@@ -456,9 +457,6 @@ void	test_bonus_int(void)
 	x = printf("  Or:\tNumber [%010d]\n", INT_MIN);
 	y = ft_printf("  Ft:\tNumber [%010d]\n", INT_MIN);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-
-//	 47         TEST(22, print(" %010d ", INT_MIN));
-
 
 	printf("\n----------- TEST: SPACE INT -----------\n\n");
 	x = printf("  Or:\tNumber [% 0*i]\n", 8, 42);
@@ -588,7 +586,7 @@ void	test_invalid_spec(void)
 	x = printf("  Or\t:\tInvalid: [%%wawa] = [%wawa]\n");
 	y = ft_printf("  Ft\t:\tInvalid: [%%wawa] = [%wawa]\n");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-}*/
+}
 
 int	main(void)
 {
@@ -605,7 +603,7 @@ int	main(void)
 	test_p();
 	test_all();
 
-	/*printf("\n\n========== BONUS TESTS ============\n\n");
+	printf("\n\n========== BONUS TESTS ============\n\n");
 	test_bonus_char();
 	test_bonus_str();
 	test_bonus_hex();
@@ -614,8 +612,7 @@ int	main(void)
 	test_bonus_ptr();
 	test_bonus_precision();
 	test_extra();
-	test_invalid_spec();*/
-
+	test_invalid_spec();
 	return (0);
 }
 

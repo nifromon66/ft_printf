@@ -40,10 +40,32 @@ static int	print_n_16_fd(unsigned long long n)
 	return (i);
 }
 
-static int	print_p_fd(unsigned long long p)
+static int	print_before_after_p(t_ft_printf *format)
 {
-	ft_putstr_fd(OX, FD);
-	return (print_n_16_fd(p) + LEN_OX);
+	int	printed;
+
+	printed = 0;
+	while (format->width-- > 0)
+	{
+		ft_putchar_fd(' ', FD);
+		printed++;
+	}
+	return (printed);
+}
+
+static int	print_null_p(t_ft_printf *format)
+{
+	int	printed;
+
+	printed = 0;
+	if (format->width != 0)
+		format->width -= 5;
+	if (!format->hyphen && format->width != 0)
+		printed += print_before_after_p(format);
+	printed += print_s_fd(NULL_P);
+	if (format->hyphen && format->width != 0)
+		printed += print_before_after_p(format);
+	return (printed);
 }
 
 void	ftpf_format_p(t_ft_printf *format, va_list arg)
@@ -52,11 +74,14 @@ void	ftpf_format_p(t_ft_printf *format, va_list arg)
 
 	p = va_arg(arg, unsigned long long);
 	if (!p)
-	{
-		format->printed += print_s_fd(NULL_P);
-		return ;
-	}
-	format->printed += print_p_fd(p);
+		return ((void)(format->printed += print_null_p(format)));
+	format->width -= ull_len(p);
+	if (!format->hyphen && format->width != 0)
+		format->printed += print_before_after_p(format);
+	ft_putstr_fd("0x", FD);
+	format->printed += (print_n_16_fd(p) + LEN_OX);
+	if (format->hyphen && format->width != 0)
+		format->printed += print_before_after_p(format);
 }
 
 //END

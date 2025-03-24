@@ -25,12 +25,73 @@ static int	print_n_u_fd(unsigned int n)
 	return (i);
 }
 
+static int	print_before_u(t_ft_printf *format, int number_len)
+{
+	int	printed;
+
+	printed = 0;
+	if (format->width != 0 && format->precision == -1)
+		format->width -= number_len;
+	while (format->width-- > 0)
+	{
+		if (format->zero)
+			ft_putchar_fd('0', FD);
+		else
+			ft_putchar_fd(' ', FD);
+		printed++;
+	}
+	return (printed);
+}
+
+static int	print_middle_u(t_ft_printf *format, int number_len)
+{
+	int	printed;
+
+	printed = 0;
+	if (format->precision != -1)
+	{
+		format->precision -= number_len;
+		while (format->precision-- > 0)
+		{
+			ft_putchar_fd('0', FD);
+			printed++;
+		}
+	}
+	return (printed);
+}
+
+static int	print_after_u(t_ft_printf *format, int number_len)
+{
+	int	printed;
+
+	printed = 0;
+	if (format->width != 0 && format->precision == -1)
+		format->width -= number_len;
+	while (format->width-- > 0)
+	{
+		if (format->zero)
+			ft_putchar_fd('0', FD);
+		else
+			ft_putchar_fd(' ', FD);
+		printed++;
+	}
+	return (printed);
+}
+
 void	ftpf_format_u(t_ft_printf *format, va_list arg)
 {
-	unsigned int	n;
+	unsigned long	i;
+	char			*number;
 
-	n = va_arg(arg, unsigned int);
-	format->printed += print_n_u_fd(n);
+	i = (unsigned long)va_arg(arg, unsigned int);
+	number = ft_itoa((int)i);
+	if (!format->hyphen)
+		format->printed += print_before_u(format, ((int)(ft_strlen(number))));
+	format->printed += print_middle_u(format, ((int)(ft_strlen(number))));
+	format->printed += print_n_u_fd(i);
+	if (format->hyphen)
+		format->printed += print_after_u(format, ((int)(ft_strlen(number))));
+	free(number);
 }
 
 //END
