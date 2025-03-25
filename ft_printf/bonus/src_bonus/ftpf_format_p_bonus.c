@@ -75,7 +75,8 @@ void	ftpf_format_p(t_ft_printf *format, va_list arg)
 	p = va_arg(arg, unsigned long long);
 	if (!p)
 		return ((void)(format->printed += print_null_p(format)));
-	format->width -= ull_len(p);
+	format->width -= ft_ptrlen(p);
+	format->width -= 2;
 	if (!format->hyphen && format->width != 0)
 		format->printed += print_before_after_p(format);
 	ft_putstr_fd("0x", FD);

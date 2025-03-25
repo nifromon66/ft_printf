@@ -13,13 +13,13 @@
 //START
 #include "../headers_bonus/ft_printf_bonus.h"
 
-static int	print_n_16_fd_upp(unsigned int n)
+static int	print_n_16_fd_upp(unsigned long long n)
 {
 	int	tmp;
 	int	i;
 
 	i = 0;
-	if ((unsigned int)(LEN_BASE_16 - 1) < n)
+	if ((unsigned long long)(LEN_BASE_16 - 1) < n)
 		i += print_n_16_fd_upp(n / LEN_BASE_16);
 	tmp = BASE_16_UPP[(int)(n % LEN_BASE_16)];
 	write(FD, &tmp, 1);
@@ -94,20 +94,17 @@ static int	print_after_x_upp(t_ft_printf *format, int number_len)
 
 void	ftpf_format_x_upp(t_ft_printf *format, va_list arg)
 {
-	char			*hexa;
-	unsigned int	x_upp;
+	unsigned long long	x_upp;
 
 	x_upp = va_arg(arg, unsigned int);
 	if (x_upp == 0)
 		format->hashtag = 0;
-	hexa = ft_itoa((int)x_upp);
 	if (!format->hyphen && format->width != 0)
-		format->printed += print_before_x_upp(format, ((int)(ft_strlen(hexa))));
-	format->printed += print_middle_x_upp(format, ((int)(ft_strlen(hexa))));
+		format->printed += print_before_x_upp(format, ft_ptrlen(x_upp));
+	format->printed += print_middle_x_upp(format, ft_ptrlen(x_upp));
 	format->printed += print_n_16_fd_upp(x_upp);
 	if (format->hyphen && format->width != 0)
-		format->printed += print_after_x_upp(format, ((int)(ft_strlen(hexa))));
-	free(hexa);
+		format->printed += print_after_x_upp(format, ft_ptrlen(x_upp));
 }
 
 //END

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME =				libftprintf.a
-NAME_BONUS =		libftprintf_bonus.a
+NAME_BONUS =		libftprintf.a
 
 CC =				gcc
 CFLAGS =			-Wall -Wextra -Werror

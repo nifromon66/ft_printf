@@ -13,7 +13,7 @@
 //START
 #include "../headers_bonus/ft_printf_bonus.h"
 
-static int	print_n_u_fd(unsigned int n)
+static int	print_n_u_fd(unsigned long long n)
 {
 	int	i;
 
@@ -80,11 +80,11 @@ static int	print_after_u(t_ft_printf *format, int number_len)
 
 void	ftpf_format_u(t_ft_printf *format, va_list arg)
 {
-	unsigned long	i;
-	char			*number;
+	unsigned long long	i;
+	char				*number;
 
-	i = (unsigned long)va_arg(arg, unsigned int);
-	number = ft_itoa((int)i);
+	i = (unsigned long long)va_arg(arg, unsigned int);
+	number = ft_ulltoa(i);
 	if (!format->hyphen)
 		format->printed += print_before_u(format, ((int)(ft_strlen(number))));
 	format->printed += print_middle_u(format, ((int)(ft_strlen(number))));

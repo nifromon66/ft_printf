@@ -97,7 +97,8 @@ void		ftpf_format_x_upp(t_ft_printf *format, va_list arg);
 void		ftpf_format_pc(t_ft_printf *percent, va_list arg);
 int			ftpf_percent_len(const char *s);
 // ftpf_utils_bonus.c
-int			ull_len(unsigned long long nbr);
+int			ft_ptrlen(unsigned long long nbr);
+char		*ft_ulltoa(unsigned long long n);
 
 #endif
 

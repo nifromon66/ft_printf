@@ -120,7 +120,7 @@ void	ftpf_format_i(t_ft_printf *format, va_list arg)
 	{
 		format->blank = 0;
 		format->plus = 0;
-		if (!format->hyphen && format->zero)
+		if (!format->hyphen && (format->zero || format->precision))
 		{
 			ft_putchar_fd('-', FD);
 			format->printed++;
