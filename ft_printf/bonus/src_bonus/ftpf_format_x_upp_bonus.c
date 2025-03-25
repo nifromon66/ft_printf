@@ -102,7 +102,8 @@ void	ftpf_format_x_upp(t_ft_printf *format, va_list arg)
 	if (!format->hyphen && format->width != 0)
 		format->printed += print_before_x_upp(format, ft_ptrlen(x_upp));
 	format->printed += print_middle_x_upp(format, ft_ptrlen(x_upp));
-	format->printed += print_n_16_fd_upp(x_upp);
+	if (x_upp != 0 && format->precision != 0)
+		format->printed += print_n_16_fd_upp(x_upp);
 	if (format->hyphen && format->width != 0)
 		format->printed += print_after_x_upp(format, ft_ptrlen(x_upp));
 }

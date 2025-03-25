@@ -34,6 +34,7 @@ SRCS =				\
 					$(SRCS_DIR)/ft_printf.c \
 					$(SRCS_DIR)/ftpf_check.c \
 					$(SRCS_DIR)/ftpf_init.c \
+					$(SRCS_DIR)/ftpf_dispatch.c \
 					$(SRCS_DIR)/ftpf_format_c.c \
 					$(SRCS_DIR)/ftpf_format_s.c \
 					$(SRCS_DIR)/ftpf_format_p.c \
@@ -41,7 +42,8 @@ SRCS =				\
 					$(SRCS_DIR)/ftpf_format_i.c \
 					$(SRCS_DIR)/ftpf_format_u.c \
 					$(SRCS_DIR)/ftpf_format_x_low.c \
-					$(SRCS_DIR)/ftpf_format_x_upp.c
+					$(SRCS_DIR)/ftpf_format_x_upp.c \
+					$(SRCS_DIR)/ftpf_format_pc.c
 
 OBJS_DIR =			obj
 

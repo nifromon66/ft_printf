@@ -6,7 +6,7 @@
 /*   By: nifromon <nifromon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 22:17:18 by nifromon          #+#    #+#             */
-/*   Updated: 2025/03/24 20:57:14 by nifromon         ###   ########.fr       */
+/*   Updated: 2025/03/25 21:09:54 by nifromon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -585,6 +585,23 @@ void	test_invalid_spec(void)
 
 	x = printf("  Or\t:\tInvalid: [%%wawa] = [%wawa]\n");
 	y = ft_printf("  Ft\t:\tInvalid: [%%wawa] = [%wawa]\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+
+	printf("\n----------- TEST: PRECISION 0 on 0 -----------\n\n");
+	x = printf("  Or:\tD: [%.0d]\n", 0);
+	y = ft_printf("  Ft:\tD: [%.0d]\n", 0);
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = printf("  Or:\tI: [%.0i]\n", 0);
+	y = ft_printf("  Ft:\tI: [%.0i]\n", 0);
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = printf("  Or:\tU: [%.0u]\n", 0);
+	y = ft_printf("  Ft:\tU: [%.0u]\n", 0);
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = printf("  Or:\tX_LOW: [%.0x]\n", 0);
+	y = ft_printf("  Ft:\tX_LOW: [%.0x]\n", 0);
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = printf("  Or:\tX_UPP: [%.0X]\n", 0);
+	y = ft_printf("  Ft:\tX_UPP: [%.0X]\n", 0);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 

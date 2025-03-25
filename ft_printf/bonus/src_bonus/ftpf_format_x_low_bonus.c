@@ -102,7 +102,8 @@ void	ftpf_format_x_low(t_ft_printf *format, va_list arg)
 	if (!format->hyphen && format->width != 0)
 		format->printed += print_before_x_low(format, ft_ptrlen(x_low));
 	format->printed += print_middle_x_low(format, ft_ptrlen(x_low));
-	format->printed += print_n_16_fd_low(x_low);
+	if (x_low != 0 && format->precision != 0)
+		format->printed += print_n_16_fd_low(x_low);
 	if (format->hyphen && format->width != 0)
 		format->printed += print_after_x_low(format, ft_ptrlen(x_low));
 }

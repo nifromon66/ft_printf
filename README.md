@@ -16,14 +16,18 @@ By nifromon (Nicolas Fromont), student at 42 perpignan, France.
 >
 > - Program name : libftprintf.a
 > - Prototype : `int    ft_printf(const char *, ...);`
+> - Requirements :
+> 	- Do not implement the original printf()'s buffer management.
+> 	- Your implementation will be evaluated against the behavior of the original printf().
+> 	- "libftprintf.a" must be created at the root of the repository
 > - Files to return :
 >   - Mandatory :
->     - [Makefile](ft_printf/Makefile)
->     - [ft_printf.h](ft_printf/mandatory/headers/ft_printf.h)
->     - [*.c](ft_printf/mandatory/src/)
->   - If bonus :
+>     - [[Makefile]]
+>     - [[ft_printf/ft_printf/mandatory/headers/ft_printf.h|ft_printf.h]]
+>     - **`*.c`**
+>   - Bonus :
 >     - [ft_printf_bonus.h](ft_printf/bonus/headers_bonus/ft_printf_bonus.h)
->     - [*_bonus.c](ft_printf/bonus/src_bonus/)
+>     -**`*_bonus.c`**
 > - Allowed external functions : malloc(), free() {stdlib.h}, write {unistd.h}, va_start, va_arg, va_copy, va_end {stdarg.h}
 > - Libft allowed : Yes.
 >
@@ -44,4 +48,12 @@ By nifromon (Nicolas Fromont), student at 42 perpignan, France.
 > - **va_end** (function macro) : **va_end** is a function macro used to clean up properly the object we initialized by calling **va_star** or **va_copy**, **va_end** will free the allocated memory.
 >
 > ---
->
+>## Mandatory
+> - Your function have to handle the following conversions :
+> 	- **[%c] :** The given argument of type `int` is converted into one `unsigned char`, and the corresponding character is displayed.
+> 	- **[%s] :** The given argument of type `const char *` which is assumed to be a pointer to an array of characters (pointer to a string). The characters in the array are written down to the final null byte `\0`.
+> 	- **[%p] :** The given argument of type `void *` is displayed in hexadecimal as with `%#x`.
+> 	- **[%d] | [%i] :** The given argument of type `int` is converted to a signed decimal digit and displayed.
+> 	- **[%u] :** The given argument of type `unsigned int` is converted to an unsigned decimal digit and displayed.
+> 	- **[%x] | [%X] :** The given argument of type `unsigned int` is converted to an unsigned hexadecimal digit. Either `0123456789abcdef` for `x` or `0123456789ABCDEF` for `X`.
+> 	- **[%%] :** A `%` character is displayed, there is no conversion.

@@ -88,7 +88,8 @@ void	ftpf_format_u(t_ft_printf *format, va_list arg)
 	if (!format->hyphen)
 		format->printed += print_before_u(format, ((int)(ft_strlen(number))));
 	format->printed += print_middle_u(format, ((int)(ft_strlen(number))));
-	format->printed += print_n_u_fd(i);
+	if (i != 0 && format->precision != 0)
+		format->printed += print_n_u_fd(i);
 	if (format->hyphen)
 		format->printed += print_after_u(format, ((int)(ft_strlen(number))));
 	free(number);

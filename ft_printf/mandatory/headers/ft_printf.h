@@ -56,16 +56,17 @@ typedef struct s_ft_printf
 typedef void	(*t_ftpf_dispatch)(t_ft_printf *format, va_list arg);
 
 // Fonctions
-// Manager fonction
 	// ft_printf.c
 int			ft_printf(const char *format, ...);
-// Employee Functions
-	// init.c
+	// ftpf_init.c
 int			ftpf_fetch_type(const char *format);
 t_ft_printf	*ftpf_init_struct(void);
-	// check.c
+	// ftpf_check.c
 int			ftpf_check_type(char c);
 int			ftpf_check_spec(const char *s);
+	// ftpf_dispatch.c
+void		ftpf_dispatching(int type, t_ft_printf *format, va_list arg);
+int			ftpf_parsing(const char *format, va_list arg);
 	// ftpf_format_*.c
 void		ftpf_format_c(t_ft_printf *format, va_list arg);
 void		ftpf_format_s(t_ft_printf *format, va_list arg);
