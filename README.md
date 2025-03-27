@@ -3,6 +3,8 @@
 
 By nifromon (Nicolas Fromont), student at 42 perpignan, France.
 
+> ---
+> 
 > ## DESCRIPTION
 > - This project goal of this project is quite simple : replicate the printf() function. In a nutshell, printf is a command of the {stdio.h} library used to display a **formatted** string on the standard output (terminal).
 > - What i mean by **formatted** is that the format specifiers beginning by `%` character indicate the location and the method of convertion of a data element (such as a number) into printable characters.
@@ -30,7 +32,6 @@ By nifromon (Nicolas Fromont), student at 42 perpignan, France.
 > ---
 >
 > ## VARIADIC FUNCTIONS
-> 
 > This is the new concept introduced to us trough this project aside from the really usefull function that is ft_printf : Variadic functions. As it name implies a variadic function is a function that can take a variable number of arguments, which is characterized by the '...' parameter in the function signature.
 >
 > What drasticly change from the functions we previously created is that we do not know in advance what those arguments will be 🤷‍♂️ but one which is mandatory, you can't have the '...' parameter alone.
