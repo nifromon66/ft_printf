@@ -149,3 +149,5 @@ By nifromon (Nicolas Fromont), student at 42 perpignan, France.
 > 		- Prototype : `void    ftpf_fetch_flags(const char *format, t_ft_printf **flags);`
 > 		- Description : Fetch the different flags contained in the `format` string and then call `ftpf_sort_flags_manager` to sort them.
 > 		- Return Value : None.
+> ---
+
