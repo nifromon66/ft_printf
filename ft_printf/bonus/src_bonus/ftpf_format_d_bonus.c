@@ -78,7 +78,7 @@ static int	print_middle_d(t_ft_printf *format, int number_len)
 			ft_putchar_fd('+', FD);
 		printed++;
 	}
-	if (format->precision != -1)
+	if (format->precision > 0)
 	{
 		format->precision -= number_len;
 		while (format->precision-- > 0)
@@ -132,7 +132,12 @@ void	ftpf_format_d(t_ft_printf *format, va_list arg)
 	if (!format->hyphen)
 		format->printed += print_before_d(format, ((int)(ft_strlen(number))));
 	format->printed += print_middle_d(format, ((int)(ft_strlen(number))));
-	if (i != 0 && format->precision != 0)
+	if (format->precision == 0)
+	{
+		if (i != 0)
+			format->printed += print_n_10_fd(i);
+	}
+	else
 		format->printed += print_n_10_fd(i);
 	if (format->hyphen)
 		format->printed += print_after_d(format, ((int)(ft_strlen(number))));

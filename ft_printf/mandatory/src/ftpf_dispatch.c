@@ -6,7 +6,7 @@
 /*   By: nifromon <nifromon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:22:36 by nifromon          #+#    #+#             */
-/*   Updated: 2025/03/25 15:25:27 by nifromon         ###   ########.fr       */
+/*   Updated: 2025/03/26 20:48:44 by nifromon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ int	ftpf_parsing(const char *format, va_list arg)
 {
 	t_ft_printf	*type;
 	int			printed;
-	int			specifier;
 
+	printed = 0;
 	type = ftpf_init_struct();
 	if (format && type)
 	{
-		specifier = ftpf_fetch_type(format);
-		type->specifier = specifier;
+		type->specifier = ftpf_fetch_type(format);
+		ftpf_dispatching(type->specifier, type, arg);
+		printed = type->printed;
+		free(type);
 	}
-	ftpf_dispatching(type->specifier, type, arg);
-	printed = type->printed;
-	free(type);
 	return (printed);
 }
 

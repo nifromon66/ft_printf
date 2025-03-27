@@ -1,75 +1,157 @@
 # **************************************************************************** #
-#  #
-# :::  ::::::::#
-#Makefile   :+:  :+::+:#
-# +:+ +:+ +:+  #
-#By: nifromon <marvin@42.fr>+#+  +:+   +#+ #
-# +#+#+#+#+#+   +#+#
-#Created: 2024/11/11 13:34:03 by nifromon  #+##+#  #
-#Updated: 2024/11/13 12:24:09 by nifromon ###   ########.fr#
-#  #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nifromon <nifromon@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/01/06 05:37:45 by nifromon          #+#    #+#              #
+#    Updated: 2025/03/27 07:08:09 by nifromon         ###   ########.fr        #
+#                                                                              #
 # **************************************************************************** #
 
-NAME =libft.a
-SRCS_DIR=src
-OBJS_DIR=.
-AR=ar -rcs
-RM=rm -f
+# Name
+NAME_ALL =			libft_inc.a
+NAME_LIBFT =		libft.a
+NAME_FT_PRINTF =	ft_printf.a
+NAME_GNL =			get_next_line.a
 
-SRCS = \
-	$(SRCS_DIR)/ft_isalpha.c $(SRCS_DIR)/ft_isdigit.c $(SRCS_DIR)/ft_isalnum.c \
-	$(SRCS_DIR)/ft_isascii.c $(SRCS_DIR)/ft_isprint.c $(SRCS_DIR)/ft_strlen.c \
-	$(SRCS_DIR)/ft_memset.c $(SRCS_DIR)/ft_bzero.c $(SRCS_DIR)/ft_memcpy.c \
-	$(SRCS_DIR)/ft_memmove.c $(SRCS_DIR)/ft_strlcpy.c $(SRCS_DIR)/ft_strlcat.c \
-	$(SRCS_DIR)/ft_toupper.c $(SRCS_DIR)/ft_tolower.c $(SRCS_DIR)/ft_strchr.c \
-	$(SRCS_DIR)/ft_strrchr.c $(SRCS_DIR)/ft_strncmp.c $(SRCS_DIR)/ft_memchr.c \
-	$(SRCS_DIR)/ft_memcmp.c $(SRCS_DIR)/ft_strnstr.c $(SRCS_DIR)/ft_atoi.c \
-	$(SRCS_DIR)/ft_calloc.c $(SRCS_DIR)/ft_strdup.c $(SRCS_DIR)/ft_substr.c \
-	$(SRCS_DIR)/ft_strjoin.c $(SRCS_DIR)/ft_strtrim.c $(SRCS_DIR)/ft_split.c \
-	$(SRCS_DIR)/ft_itoa.c $(SRCS_DIR)/ft_strmapi.c $(SRCS_DIR)/ft_striteri.c \
-	$(SRCS_DIR)/ft_putchar_fd.c $(SRCS_DIR)/ft_putstr_fd.c \
-	$(SRCS_DIR)/ft_putendl_fd.c $(SRCS_DIR)/ft_putnbr_fd.c
+# Arguments
+CC = 				gcc
+CFLAGS = 			-Wall -Wextra -Werror
 
-OBJS = ${SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o}
+# Repositories
+# Sources
+SRCS_DIR =			src
+LIBFT_SRC =			$(SRCS_DIR)/libft_SRC
+FT_PRINTF_SRC = 	$(SRCS_DIR)/ft_printf_SRC
+GNL_SRC =			$(SRCS_DIR)/get_next_line_SRC
+# Headers
+HEADERS_DIR =		headers
+LIBFT_H =			$(HEADERS_DIR)/libft_H/
+FT_PRINTF_H =		$(HEADERS_DIR)/ft_printf_H/
+GNL_H =				$(HEADERS_DIR)/get_next_line_H/
+OBJS_DIR =			obj
 
-BSRCS = \
-	$(SRCS_DIR)/ft_lstnew.c $(SRCS_DIR)/ft_lstadd_front.c \
-	$(SRCS_DIR)/ft_lstsize.c $(SRCS_DIR)/ft_lstlast.c \
-	$(SRCS_DIR)/ft_lstadd_back.c $(SRCS_DIR)/ft_lstdelone.c \
-	$(SRCS_DIR)/ft_lstclear.c $(SRCS_DIR)/ft_lstiter.c \
-	$(SRCS_DIR)/ft_lstmap.c
+# Utils
+AR =				ar -rcs
+RM =				rm -rf
 
-BOBJS = ${BSRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o}
+# Sources and Objects
+LIBFT_SRCS = 		\
+					$(LIBFT_SRC)/ft_isalpha.c $(LIBFT_SRC)/ft_isdigit.c \
+					$(LIBFT_SRC)/ft_isalnum.c $(LIBFT_SRC)/ft_isascii.c \
+					$(LIBFT_SRC)/ft_isprint.c $(LIBFT_SRC)/ft_strlen.c \
+					$(LIBFT_SRC)/ft_memset.c $(LIBFT_SRC)/ft_bzero.c \
+					$(LIBFT_SRC)/ft_memcpy.c $(LIBFT_SRC)/ft_memmove.c \
+					$(LIBFT_SRC)/ft_strlcpy.c $(LIBFT_SRC)/ft_strlcat.c \
+					$(LIBFT_SRC)/ft_toupper.c $(LIBFT_SRC)/ft_tolower.c \
+					$(LIBFT_SRC)/ft_strchr.c $(LIBFT_SRC)/ft_strrchr.c \
+					$(LIBFT_SRC)/ft_strncmp.c $(LIBFT_SRC)/ft_memchr.c \
+					$(LIBFT_SRC)/ft_memcmp.c $(LIBFT_SRC)/ft_strnstr.c \
+					$(LIBFT_SRC)/ft_atoi.c $(LIBFT_SRC)/ft_calloc.c \
+					$(LIBFT_SRC)/ft_strdup.c $(LIBFT_SRC)/ft_substr.c \
+					$(LIBFT_SRC)/ft_strjoin.c $(LIBFT_SRC)/ft_strtrim.c \
+					$(LIBFT_SRC)/ft_split.c $(LIBFT_SRC)/ft_itoa.c \
+					$(LIBFT_SRC)/ft_strmapi.c $(LIBFT_SRC)/ft_striteri.c \
+					$(LIBFT_SRC)/ft_putchar_fd.c $(LIBFT_SRC)/ft_putstr_fd.c \
+					$(LIBFT_SRC)/ft_putendl_fd.c $(LIBFT_SRC)/ft_putnbr_fd.c \
+					$(LIBFT_SRC)/ft_lstnew.c $(LIBFT_SRC)/ft_lstadd_front.c \
+					$(LIBFT_SRC)/ft_lstsize.c $(LIBFT_SRC)/ft_lstlast.c \
+					$(LIBFT_SRC)/ft_lstadd_back.c $(LIBFT_SRC)/ft_lstdelone.c \
+					$(LIBFT_SRC)/ft_lstclear.c $(LIBFT_SRC)/ft_lstiter.c \
+					$(LIBFT_SRC)/ft_lstmap.c $(LIBFT_SRC)/ft_ptrlen.c \
+					$(LIBFT_SRC)/ft_ulltoa.c
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+LIBFT_OBJS = 		$(LIBFT_SRCS:$(LIBFT_SRC)/%.c=$(OBJS_DIR)/$(LIBFT_SRC)/%.o)
+					
+FT_PRINTF_SRCS =	\
+					$(FT_PRINTF_SRC)/ft_printf.c $(FT_PRINTF_SRC)/ftpf_init.c \
+					$(FT_PRINTF_SRC)/ftpf_format_c.c $(FT_PRINTF_SRC)/ftpf_check.c \
+					$(FT_PRINTF_SRC)/ftpf_format_d.c \
+					$(FT_PRINTF_SRC)/ftpf_format_i.c \
+					$(FT_PRINTF_SRC)/ftpf_format_p.c \
+					$(FT_PRINTF_SRC)/ftpf_format_s.c \
+					$(FT_PRINTF_SRC)/ftpf_format_u.c \
+					$(FT_PRINTF_SRC)/ftpf_format_x_low.c \
+					$(FT_PRINTF_SRC)/ftpf_format_x_upp.c
 
-all: $(NAME)
+FT_PRINTF_OBJS = 	$(FT_PRINTF_SRCS:$(FT_PRINTF_SRC)/%.c=$(OBJS_DIR)/$(FT_PRINTF_SRC)/%.o)
+					
+GNL_SRCS =			\
+					$(GNL_SRC)/get_next_line.c \
+					$(GNL_SRC)/get_next_line_utils.c
 
-$(NAME): $(OBJS)
-	@mkdir -p $(OBJS_DIR)
-	$(AR) $@ $^
+GNL_OBJS = 			$(GNL_SRCS:$(GNL_SRC)/%.c=$(OBJS_DIR)/$(GNL_SRC)/%.o)
 
-bonus: $(OBJS) $(BOBJS)
-	@mkdir -p $(OBJS_DIR)
-	$(AR) $(NAME) $^
+# Rules and Dependencies
+all: 				$(NAME_ALL)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	@mkdir -p $(OBJS_DIR)
-	$(CC) -c $(CFLAGS) $< -o $@
+$(NAME_ALL):		$(LIBFT_OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS)
+					$(AR) $(NAME_ALL) $(LIBFT_OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS)
 
-clean:
-	$(RM) $(OBJS) $(BOBJS)
+libft:				$(NAME_LIBFT)
 
-fclean: clean
-	$(RM) $(NAME)
+$(NAME_LIBFT):		$(LIBFT_OBJS)
+					$(AR) $(NAME_LIBFT) $(LIBFT_OBJS)
 
-re: fclean all
+$(OBJS_DIR)/$(LIBFT_SRC)/%.o: $(LIBFT_SRC)/%.c
+					@mkdir -p $(dir $@)
+					$(CC) -c $(CFLAGS) -I $(LIBFT_H) $< -o $@
 
-so:
-	$(CC) -fPIC $(CFLAGS) $(SRCS)
-	gcc -shared -o libft.so $(OBJS)
+clean_libft:
+					$(RM) $(OBJS_DIR)/$(LIBFT_SRC)
+					
+fclean_libft: 		clean_libft
+					$(RM) $(NAME_LIBFT)
 
-.PHONY: all so bonus clean fclean re
+re_libft: 				fclean_libft libft
+
+ft_printf:			$(NAME_FT_PRINTF) libft
+
+$(NAME_FT_PRINTF):	$(FT_PRINTF_OBJS)
+					$(AR) $(NAME_FT_PRINTF) $(FT_PRINTF_OBJS)
+
+$(OBJS_DIR)/$(FT_PRINTF_SRC)/%.o: $(FT_PRINTF_SRC)/%.c
+					@mkdir -p $(dir $@)
+					$(CC) -c $(CFLAGS) -I $(FT_PRINTF_H) $< -o $@
+
+clean_ft_printf:
+					$(RM) $(OBJS_DIR)/$(FT_PRINTF_SRC)
+					
+fclean_ft_printf: 	clean_ft_printf
+					$(RM) $(NAME_FT_PRINTF)
+
+re_ft_printf: 		fclean_ft_printf ft_printf
+
+get_next_line:		$(NAME_GNL)
+
+$(NAME_GNL):		$(GNL_OBJS)
+					$(AR) $(NAME_GNL) $(GNL_OBJS)
+
+$(OBJS_DIR)/$(GNL_SRC)/%.o: $(GNL_SRC)/%.c
+					@mkdir -p $(dir $@)
+					$(CC) -c $(CFLAGS) -I $(GNL_H) $< -o $@
+
+clean_gnl:
+					$(RM) $(OBJS_DIR)/$(GNL_SRC)
+					
+fclean_gnl: 		clean_gnl
+					$(RM) $(NAME_GNL)
+
+re_gnl: 			fclean_gnl get_next_line
+
+clean:				clean_libft clean_ft_printf clean_gnl
+					$(RM) $(OBJS_DIR)
+
+fclean: 			clean fclean_libft fclean_ft_printf fclean_gnl
+					$(RM) $(NAME_ALL)
+
+re: 				fclean all
+
+.PHONY: 			all libft ft_printf get_next_line clean fclean re \
+					clean_libft clean_ft_printf clean \
+					fclean_libft fclean_ft_printf fclean_gnl \
+					re_libft re_ft_printf re_gnl
 
 #END

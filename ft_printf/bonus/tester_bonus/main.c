@@ -6,7 +6,7 @@
 /*   By: nifromon <nifromon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 22:17:18 by nifromon          #+#    #+#             */
-/*   Updated: 2025/03/25 21:09:54 by nifromon         ###   ########.fr       */
+/*   Updated: 2025/03/27 05:43:57 by nifromon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -588,8 +588,8 @@ void	test_invalid_spec(void)
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
 	printf("\n----------- TEST: PRECISION 0 on 0 -----------\n\n");
-	x = printf("  Or:\tD: [%.0d]\n", 0);
-	y = ft_printf("  Ft:\tD: [%.0d]\n", 0);
+	x = printf("  Or:\tD: [%*d]\n", 42);
+	y = ft_printf("  Ft:\tD: [%*d]\n", 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 	x = printf("  Or:\tI: [%.0i]\n", 0);
 	y = ft_printf("  Ft:\tI: [%.0i]\n", 0);

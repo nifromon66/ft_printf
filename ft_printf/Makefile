@@ -51,11 +51,12 @@ OBJS =				$(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 SRCS_BONUS =		\
 					$(SRCS_BONUS_DIR)/ft_printf_bonus.c \
-					$(SRCS_BONUS_DIR)/ftpf_dispatch_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_check_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_init_bonus.c \
+					$(SRCS_BONUS_DIR)/ftpf_star_manager_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_fetch_manager_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_sort_flags_manager_bonus.c \
+					$(SRCS_BONUS_DIR)/ftpf_dispatch_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_c_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_s_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_p_bonus.c \
@@ -64,8 +65,7 @@ SRCS_BONUS =		\
 					$(SRCS_BONUS_DIR)/ftpf_format_i_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_u_bonus.c \
 					$(SRCS_BONUS_DIR)/ftpf_format_x_low_bonus.c \
-					$(SRCS_BONUS_DIR)/ftpf_format_x_upp_bonus.c \
-					$(SRCS_BONUS_DIR)/ftpf_utils_bonus.c
+					$(SRCS_BONUS_DIR)/ftpf_format_x_upp_bonus.c
 
 OBJS_BONUS_DIR =	obj_bonus
 
@@ -78,7 +78,7 @@ $(NAME): 			$(LIBFT) $(OBJS)
 					$(AR) $(NAME) $(OBJS)
 
 $(LIBFT):
-					make -C $(LIBFT_PATH) all
+					make -C $(LIBFT_PATH) libft
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 					@mkdir -p $(OBJS_DIR)
@@ -103,7 +103,7 @@ tester_bonus:		bonus
 					make -C $(TESTER_BONUS_PATH) all
 
 clean:
-					make -C $(LIBFT_PATH) clean
+					make -C $(LIBFT_PATH) clean_libft
 					make -C $(TESTER_PATH) clean
 					make -C $(TESTER_BONUS_PATH) clean
 					$(RM) $(OBJS_DIR)
@@ -112,7 +112,7 @@ clean:
 fclean: 			clean
 					make -C $(TESTER_PATH) fclean
 					make -C $(TESTER_BONUS_PATH) fclean
-					make -C $(LIBFT_PATH) fclean
+					make -C $(LIBFT_PATH) fclean_libft
 					$(RM) $(NAME)
 					$(RM) $(NAME_BONUS)
 

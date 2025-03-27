@@ -6,7 +6,7 @@
 /*   By: nifromon <nifromon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:06:23 by nifromon          #+#    #+#             */
-/*   Updated: 2025/03/24 22:04:19 by nifromon         ###   ########.fr       */
+/*   Updated: 2025/03/27 06:41:29 by nifromon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 void	ftpf_sort_flags_manager(t_ft_printf **flags)
 {
 	ftpf_sort_flags_spec(flags, (*flags)->specifier);
+	if ((*flags)->width < 0)
+	{
+		(*flags)->width *= -1;
+		(*flags)->hyphen = 1;
+	}
 	if ((*flags)->plus != 0)
 		(*flags)->blank = 0;
 	if ((*flags)->hyphen != 0 || (*flags)->precision != -1)

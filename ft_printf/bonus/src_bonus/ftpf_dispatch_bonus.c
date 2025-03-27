@@ -6,32 +6,11 @@
 /*   By: nifromon <nifromon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:52:00 by nifromon          #+#    #+#             */
-/*   Updated: 2025/03/24 22:03:57 by nifromon         ###   ########.fr       */
+/*   Updated: 2025/03/27 06:48:53 by nifromon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers_bonus/ft_printf_bonus.h"
-
-void	ftpf_format_star(const char *format, t_ft_printf **flags, va_list arg)
-{
-	int	i;
-
-	i = 0;
-	if (format[i] == '%')
-		i++;
-	while (ftpf_check_type(format[i]) != 1 && format[i])
-	{
-		if (format[i] == '*' && format[i - 1] == '.')
-			(*flags)->star = 2;
-		else if (format[i] == '*')
-			(*flags)->star = 1;
-		i++;
-	}
-	if ((*flags)->star == 1)
-		(*flags)->width = va_arg(arg, int);
-	else if ((*flags)->star == 2)
-		(*flags)->precision = va_arg(arg, int);
-}
 
 void	ftpf_dispatching(int type, t_ft_printf *format, va_list arg)
 {
@@ -53,18 +32,17 @@ int	ftpf_parsing(const char *format, va_list arg)
 {
 	t_ft_printf	*type;
 	int			printed;
-	int			specifier;
 
+	printed = 0;
 	type = ftpf_init_struct();
 	if (format && type)
 	{
-		specifier = ftpf_fetch_type(format);
-		type->specifier = specifier;
+		type->specifier = ftpf_fetch_type(format);
+		ftpf_star_manager(format, &type, arg);
 		ftpf_fetch_flags(format, &type);
-		ftpf_format_star(format, &type, arg);
+		ftpf_dispatching(type->specifier, type, arg);
+		printed = type->printed;
+		free(type);
 	}
-	ftpf_dispatching(type->specifier, type, arg);
-	printed = type->printed;
-	free(type);
 	return (printed);
 }

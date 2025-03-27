@@ -48,7 +48,7 @@ static int	print_middle_u(t_ft_printf *format, int number_len)
 	int	printed;
 
 	printed = 0;
-	if (format->precision != -1)
+	if (format->precision > 0)
 	{
 		format->precision -= number_len;
 		while (format->precision-- > 0)
@@ -88,7 +88,12 @@ void	ftpf_format_u(t_ft_printf *format, va_list arg)
 	if (!format->hyphen)
 		format->printed += print_before_u(format, ((int)(ft_strlen(number))));
 	format->printed += print_middle_u(format, ((int)(ft_strlen(number))));
-	if (i != 0 && format->precision != 0)
+	if (format->precision == 0)
+	{
+		if (i != 0)
+			format->printed += print_n_u_fd(i);
+	}
+	else
 		format->printed += print_n_u_fd(i);
 	if (format->hyphen)
 		format->printed += print_after_u(format, ((int)(ft_strlen(number))));

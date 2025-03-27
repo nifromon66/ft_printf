@@ -16,7 +16,7 @@
 
 # include <stdarg.h>
 # include <stdio.h>
-# include "../../libft/headers/libft.h"
+# include "../../libft/headers/libft_H/libft.h"
 
 // Macros
 # define FD				1
@@ -70,10 +70,14 @@ int			ft_printf(const char *format, ...);
 	// ftpf_dispatch_bonus.c
 int			ftpf_parsing(const char *format, va_list arg);
 void		ftpf_dispatching(int type, t_ft_printf *format, va_list arg);
-void		ftpf_format_star(const char *format, t_ft_printf **flags,
-				va_list arg);
 	// ftpf_init_bonus.c
 t_ft_printf	*ftpf_init_struct(void);
+	// ftpf_star_manager_bonus.c
+int			ftpf_get_index_arg(int idx, const char *format);
+int			ftpf_nth_star(int idx, const char *format,
+				t_ft_printf **flags, va_list arg);
+void		ftpf_star_manager(const char *format, t_ft_printf **flags,
+				va_list arg);
 	// ftpf_fetch_manager_bonus.c
 int			ftpf_fetch_type(const char *format);
 void		ftpf_fetch_flags(const char *format, t_ft_printf **flags);
@@ -95,10 +99,6 @@ void		ftpf_format_u(t_ft_printf *format, va_list arg);
 void		ftpf_format_x_low(t_ft_printf *format, va_list arg);
 void		ftpf_format_x_upp(t_ft_printf *format, va_list arg);
 void		ftpf_format_pc(t_ft_printf *percent, va_list arg);
-int			ftpf_percent_len(const char *s);
-// ftpf_utils_bonus.c
-int			ft_ptrlen(unsigned long long nbr);
-char		*ft_ulltoa(unsigned long long n);
 
 #endif
 

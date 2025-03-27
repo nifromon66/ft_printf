@@ -57,11 +57,12 @@ static int	print_null_s(t_ft_printf *format)
 	int	printed;
 
 	printed = 0;
-	if (format->width != 0 && format->precision > 5)
+	if (format->width != 0
+		&& (format->precision > 5 || format->precision == -1))
 		format->width -= 6;
 	if (!format->hyphen && format->width != 0)
 		printed += print_before_s(format);
-	if (format->precision > 5)
+	if ((format->precision > 5 || format->precision == -1))
 		printed += print_s_fd(NULL_S);
 	if (format->hyphen && format->width != 0)
 		printed += print_after_s(format);

@@ -6,7 +6,7 @@
 /*   By: nifromon <nifromon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:24:33 by nifromon          #+#    #+#             */
-/*   Updated: 2025/03/24 22:04:49 by nifromon         ###   ########.fr       */
+/*   Updated: 2025/03/27 06:37:43 by nifromon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,5 @@ int	ftpf_fetch_width(const char *format, int index)
 	lenght = ft_substr(format, index, len);
 	width = ft_atoi(lenght);
 	free(lenght);
-	if (width < 0)
-		width = 0;
 	return (width);
 }

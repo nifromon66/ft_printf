@@ -13,6 +13,22 @@
 //START
 #include "../headers_bonus/ft_printf_bonus.h"
 
+static int	ftpf_percent_len(const char *s)
+{
+	int	i;
+
+	i = 1;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (ftpf_check_type(s[i]))
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	arg;
