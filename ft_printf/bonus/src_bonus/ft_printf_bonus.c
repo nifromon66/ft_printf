@@ -22,7 +22,7 @@ static int	ftpf_percent_len(const char *s)
 		return (0);
 	while (s[i])
 	{
-		if (ftpf_check_type(s[i]))
+		if (ftpf_check_type(s[i]) == 1)
 			return (i);
 		i++;
 	}

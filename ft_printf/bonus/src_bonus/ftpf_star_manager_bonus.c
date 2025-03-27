@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftpf_star_manager_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nifromon <nifromon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nifromon <nifromon@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 05:51:29 by nifromon          #+#    #+#             */
-/*   Updated: 2025/03/27 06:39:32 by nifromon         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:03:58 by nifromon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ftpf_get_index_arg(int idx, const char *format)
 	int		i;
 	int		idx_dollar;
 	char	*index;
-	
+
 	i = idx;
 	idx_dollar = -1;
 	while (ftpf_check_type(format[i]) != 1 && format[i])
@@ -41,7 +41,7 @@ int	ftpf_nth_star(int idx, const char *format, t_ft_printf **flags,
 	int		i;
 	int		index;
 	va_list	arg_copy;
-	
+
 	i = 0;
 	index = -1;
 	va_copy(arg_copy, arg);

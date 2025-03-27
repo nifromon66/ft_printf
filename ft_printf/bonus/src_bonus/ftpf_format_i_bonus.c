@@ -65,7 +65,7 @@ static int	print_before_i(t_ft_printf *format, int number_len)
 	return (printed);
 }
 
-static int	print_middle_i(t_ft_printf *format, int number_len)
+static int	print_middle_i(t_ft_printf *format, int number_len, long n)
 {
 	int	printed;
 
@@ -82,11 +82,15 @@ static int	print_middle_i(t_ft_printf *format, int number_len)
 	{
 		format->precision -= number_len;
 		while (format->precision-- > 0)
-		{
-			ft_putchar_fd('0', FD);
-			printed++;
-		}
+			printed += write(FD, "0", 1);
 	}
+	if (format->precision == 0)
+	{
+		if (n != 0)
+			printed += print_n_10_fd(n);
+	}
+	else
+		printed += print_n_10_fd(n);
 	return (printed);
 }
 
@@ -131,14 +135,7 @@ void	ftpf_format_i(t_ft_printf *format, va_list arg)
 	number = ft_itoa((int)i);
 	if (!format->hyphen)
 		format->printed += print_before_i(format, ((int)(ft_strlen(number))));
-	format->printed += print_middle_i(format, ((int)(ft_strlen(number))));
-	if (format->precision == 0)
-	{
-		if (i != 0)
-			format->printed += print_n_10_fd(i);
-	}
-	else
-		format->printed += print_n_10_fd(i);
+	format->printed += print_middle_i(format, ((int)(ft_strlen(number))), i);
 	if (format->hyphen)
 		format->printed += print_after_i(format, ((int)(ft_strlen(number))));
 	free(number);
